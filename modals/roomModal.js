@@ -1,121 +1,117 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const roomSchema = new mongoose.Schema({
-    name :{
+    name: {
         type: String,
-        required : [true,"a room must have a valid name"],
-        trim : true,
-        maxLength : [100,"a room name must not greater than 100 characters"]
+        required: [true, 'Please enter room name'],
+        trim: true,
+        maxLength: [100, 'Room name cannot exceed 100 characters']
     },
-    price :{
-        type :Number,
-        required :[true,"a room must have a price"],
-        maxLength : [4," a room price not more than 4 digits"],
-        default : 0.00
+    pricePerNight: {
+        type: Number,
+        required: [true, 'Please enter room price per night'],
+        maxLength: [4, 'Room name cannot exceed 4 characters'],
+        default: 0.0
     },
-    description :{
-        type : String,
-        required : [true,"a room must have a valid description"],
-        default : "it is one of the best room on bookit !"
+    description: {
+        type: String,
+        required: [true, 'Please enter room description'],
     },
-    address:{
-        type : String,
-        required : [true,"a room have a proper address"],
+    address: {
+        type: String,
+        required: [true, 'Please enter room address'],
     },
-    numOfguests:{
-        type : Number,
-        required : [true,"a room have a number of guests"],
-        minLength: 1,
-        default : 0
+    guestCapacity: {
+        type: Number,
+        required: [true, 'Please enter room guest capacity'],
     },
-    numOfbathrooms:{
-        type : Number,
-        required : [true,"a room have a number of bathroom"],
-        minLength:1,
-        default:1,
+    numOfBeds: {
+        type: Number,
+        required: [true, 'Please enter number of beds in room'],
     },
-    numOfBeds:{
-        type : Number,
-        required : [true,"a room have number of beds"],
-        default : 1,
-        minLength : 1,
+    internet: {
+        type: Boolean,
+        default: false,
     },
-    breakfast:{
-        type : Boolean,
-        default : false
+    breakfast: {
+        type: Boolean,
+        default: false,
     },
-    petsAllowed:{
-        type : Boolean,
-        default : false
+    airConditioned: {
+        type: Boolean,
+        default: false,
     },
-    internetFaclilty :{
-        type : Boolean,
-        default : false
+    petsAllowed: {
+        type: Boolean,
+        default: false,
     },
-    airConditioning :{
-        type : Boolean,
-        default : false
+    roomCleaning: {
+        type: Boolean,
+        default: false,
     },
-    breakfast :{
-        type : Boolean,
-        default : false
+    ratings: {
+        type: Number,
+        default: 0
     },
-    ratings:{
-        type:Number,
-        default : 0
+    numOfReviews: {
+        type: Number,
+        default: 0
     },
-    numOfratings:{
-       type: Number,
-       default : 0
-    },
-    images:[
-        {public_id:{
-            type : String,
-            required : true
-        },
-        url:{
-            type : String,
-            required : true
-        }}
-    ],
-    category:{
-        type:String,
-        required:true,
-        enum :{
-            values:[
-                'King','Single','twins'
-            ],
-            message:"Please select the room category for the room"
-        },
-    },
-    reviews:[{
-        user:{
-            type:mongoose.Schema.ObjectId,
-            ref :"User",
-            required :true
-        },
-        name:{
-            type: String,
-            required:true
-        },
-        rating:{
-            type : Number,
-            required : true
-        },
-        comment:{
-            type:String,
-            required:true
+    images: [
+        {
+            public_id: {
+                type: String,
+                required: true
+            },
+            url: {
+                type: String,
+                required: true
+            }
         }
-    }],
-    user:{
-        type:mongoose.Schema.ObjectId,
-        ref : "User",
-        required:true
+    ],
+    category: {
+        type: String,
+        required: [true, 'Please enter room category'],
+        enum: {
+            values: [
+                'King',
+                'Single',
+                'Twins'
+            ],
+            message: 'Please select correct category for room'
+        }
     },
-    createdAt:{
-        type:Date,
-        default:Date.now
+    reviews: [
+        {
+            user: {
+                type: mongoose.Schema.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            name: {
+                type: String,
+                required: true
+            },
+            rating: {
+                type: Number,
+                required: true
+            },
+            comment: {
+                type: String,
+                required: true
+            }
+        }
+    ],
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
+
 })
 
-export default mongoose.model.RoomModal
+module.exports = mongoose.models.Room || mongoose.model('Room', roomSchema);
