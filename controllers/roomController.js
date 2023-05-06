@@ -26,14 +26,38 @@ const allRooms = async (req,res)=>{
     
 }
 
-const roomById = async (req,res) =>{
+const getroomById = async (req,res) =>{
     try{
-const singleRoom = await Room.findById(req.query.id);
+const getsingleRoom = await Room.findById(req.query.id);
+if(!getsingleRoom){
+    res.status(404).json({
+        status : " the room with this id is not available "
+    })
+}
+res.status(200).json({
+    status: "success",
+    getsingleRoom
+})
+    }catch(error){
+console.log("something went wrong with the roomid details")
+    }
+}
+
+
+const updateRoomById = async (req,res) =>{
+    try{
+let singleRoom = await Room.findById(req.query.id);
 if(!singleRoom){
     res.status(404).json({
         status : " the room with this id is not available "
     })
 }
+   singleRoom = await Room.findByIdAndUpdate(req.query.body , req.body,{
+     new : true,
+     runVadilators : true,
+     useFindandModify : false
+   })
+
 res.status(200).json({
     status: "success",
     singleRoom
@@ -43,4 +67,22 @@ console.log("something went wrong with the roomid details")
     }
 }
 
-export { allRooms, newRoom ,roomById};
+const removeRoomById = async (req,res) =>{
+    try{
+const room = await Room.findById(req.query.id);
+if(!room){
+    res.status(404).json({
+        status : " the room with this id is not available "
+    })   
+}
+await room.remove();
+res.status(200).json({
+    status: "success",
+    message: " the room is get deleted "
+})
+    }catch(error){
+        console.log("something went wrong on the deletion of the room")
+    }
+}
+
+export { allRooms, newRoom , getroomById ,updateRoomById, removeRoomById };
