@@ -1,17 +1,21 @@
 import Room from "@/modals/roomModal";
+import ErrorHandler from "@/utils/errorHandler";
+import catchAsyncError from "@/middlewares/catchAsyncError";
 
-const newRoom = async (req, res) => {
+const newRoom = catchAsyncError(async (req,res,next) => {
   try {
     const room = await Room.create(req.body);
     res.status(201).json({ status: 'success', room });
   } catch (error) {
     console.error(error);
     res.status(400).json({ status: 'error', message: 'Something went wrong.' });
+
+    // return next(new ErrorHandler("Something went wrong.",404));
   }
-};
+});
  
 
-const allRooms = async (req,res)=>{
+const allRooms = catchAsyncError(async (req,res,next)=>{
     try{
         const rooms = await Room.find()
     res.status(200).json({
@@ -22,17 +26,20 @@ const allRooms = async (req,res)=>{
     }catch(error){
         console.error(error);
         res.status(400).json({ status: 'error', message: 'Something went wrong.' });
-    }
-    
-}
+        // return next(new ErrorHandler("Something went wrong.",404));
 
-const getroomById = async (req,res) =>{
+    }
+})
+
+const getroomById = catchAsyncError ( async (req,res,next) =>{
     try{
 const getsingleRoom = await Room.findById(req.query.id);
 if(!getsingleRoom){
-    res.status(404).json({
-        status : " the room with this id is not available "
-    })
+    // res.status(404).json({
+    //     status : " the room with this id is not available "
+    // })
+return next(new ErrorHandler("Something went wrong.",404));
+
 }
 res.status(200).json({
     status: "success",
@@ -40,49 +47,49 @@ res.status(200).json({
 })
     }catch(error){
 console.log("something went wrong with the roomid details")
+
     }
-}
-
-
-const updateRoomById = async (req,res) =>{
-    try{
-let singleRoom = await Room.findById(req.query.id);
-if(!singleRoom){
-    res.status(404).json({
-        status : " the room with this id is not available "
-    })
-}
-   singleRoom = await Room.findByIdAndUpdate(req.query.body , req.body,{
-     new : true,
-     runVadilators : true,
-     useFindandModify : false
-   })
-
-res.status(200).json({
-    status: "success",
-    singleRoom
 })
-    }catch(error){
-console.log("something went wrong with the roomid details")
-    }
-}
 
-const removeRoomById = async (req,res) =>{
+const updateRoomById = catchAsyncError( async (req,res,next) =>{
     try{
-const room = await Room.findById(req.query.id);
-if(!room){
-    res.status(404).json({
-        status : " the room with this id is not available "
-    })   
+        let room = await Room.findById(req.query.id);
+        if (!room) {
+            return next(new ErrorHandler('Room not found with this ID', 404))
+        }
+        room = await Room.findByIdAndUpdate(req.query.id, req.body, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        })
+    
+        res.status(200).json({
+            success: true,
+            room
+        })
+    
+    }catch(error){
+        console.log("something went wrong !")
+    }
+})
+
+const removeRoomById = catchAsyncError( async (req,res,next) =>{
+    try{
+const RoomToDelete = await Room.findById(req.query.id);
+if(!RoomToDelete){
+    // res.status(404).json({
+    //     status : " the room with this id is not available "
+    // })  
+    return next(new ErrorHandler("Something went wrong.",404));
 }
-await room.remove();
+await RoomToDelete.deleteOne();
 res.status(200).json({
     status: "success",
     message: " the room is get deleted "
 })
     }catch(error){
-        console.log("something went wrong on the deletion of the room")
+    console.log("something went wrong on the deletion of the room")
     }
-}
+})
 
 export { allRooms, newRoom , getroomById ,updateRoomById, removeRoomById };
