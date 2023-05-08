@@ -1,23 +1,50 @@
+.card_container{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* margin-top:4%; */
+  
+    
+}
+
 .card{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 414px;
-    border: #e61e4d solid 1px;
-    min-width: 300px;
+    width: 300px;
+    border-radius: 10px;
+border: 2px solid #c9c9c9;
+    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.2);
+    margin-top : 3%;
+}
 
+
+.card p{
+font-family: poppins;
+font-size: 1.8rem;
+color: black;
+margin-bottom: 10px;
+text-align: center;
+font-weight: 700;
 }
 
 .image{
-width: 300px;
-height: 250px;
+width:270px;
+height: 190px;
 object-fit: cover;
+border: 1px solid  ;
+border-radius: 20px;
+margin-bottom: 30px;
 }
 
-.rating{
+.card .rating{
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 .card button{
@@ -25,3 +52,24 @@ object-fit: cover;
     /* width: 10%; */
     background-color: #e61e4d;;
 }
+
+@media only screen and (max-width: 900px ) {
+    /* Adjust the font size of the heading and description */
+    .card_container{
+display: grid;
+grid-template-columns: repeat(2,1fr);   
+grid-template-rows: repeat(2,1fr);    
+    }
+
+    .card{
+        /* margin: 3%; */
+    }
+}
+    @media only screen and (max-width: 500px) {
+    /* Adjust the font size of the heading and description further */
+   .card_container{
+        display:flex ;
+        flex: 1;
+        flex-direction: column;
+    }
+    }

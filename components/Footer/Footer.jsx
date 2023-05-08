@@ -3,7 +3,7 @@ import styles from "./Footer.module.css"
 
 const Navbar = () => {
   return (
-    <div className={styles.footer}>Navbar</div>
+    <div className={styles.footer}></div>
   )
 }
 

@@ -5,11 +5,11 @@ import RoomCard from '../RoomCard/RoomCard'
 const Home = () => {
   return (
     <>
+    <div className={styles.head}>
     <span className={styles.rooms_heading}>All rooms</span>
-    <span className={styles.Back_to}><BiLeftArrowAlt/>Back to Search </span>
-    <div className={styles.room_cards}>
-    <RoomCard/>
+    <span className={styles.back_to}><BiLeftArrowAlt/>Back to Search </span>
     </div>
+    <RoomCard/>
     </>
   )
 }
