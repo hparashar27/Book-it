@@ -1,6 +1,7 @@
 import Room from "@/modals/roomModal";
 import ErrorHandler from "@/utils/errorHandler";
 import catchAsyncError from "@/middlewares/catchAsyncError";
+import ApiFeatures from "@/utils/apiFeatures"
 
 const newRoom = catchAsyncError(async (req,res,next) => {
   try {
@@ -9,7 +10,6 @@ const newRoom = catchAsyncError(async (req,res,next) => {
   } catch (error) {
     console.error(error);
     res.status(400).json({ status: 'error', message: 'Something went wrong.' });
-
     // return next(new ErrorHandler("Something went wrong.",404));
   }
 });
@@ -17,7 +17,9 @@ const newRoom = catchAsyncError(async (req,res,next) => {
 
 const allRooms = catchAsyncError(async (req,res,next)=>{
     try{
-        const rooms = await Room.find()
+        const apiFeatures = new ApiFeatures(Room.find(),req.query).search().filter();
+        const rooms =await apiFeatures.query
+
     res.status(200).json({
         status : "success",
         count : rooms.length,
