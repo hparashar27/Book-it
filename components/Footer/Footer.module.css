@@ -1,0 +1,8 @@
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color:  #e61e4d;
+    font-family: poppins;;
+    justify-content: center;
+}

@@ -7,15 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seeder" : "node utils/seeder"
+    "seeder": "node utils/seeder"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.1",
     "mongoose": "^7.1.0",
     "next": "13.4.1",
     "next-connect": "^1.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.8.0"
   }
 }
