@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 414px;
+    /* height: 400px; */
     width: 300px;
     border-radius: 10px;
 border: 2px solid #c9c9c9;
@@ -38,20 +38,27 @@ height: 190px;
 object-fit: cover;
 border: 1px solid  ;
 border-radius: 20px;
-margin-bottom: 30px;
+margin:10px
 }
 
 .card .rating{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+margin:10px;
 }
 
 .card button{
     color: #fff;
-    /* width: 10%; */
-    background-color: #e61e4d;;
+    font-size: 1rem;
+    width: 100%;
+    text-transform: lowercase;
+    background-color: #e61e4d;
 }
+.card button:hover{
+    background-color: #f1466e;;
+}
+
 
 @media only screen and (max-width: 900px ) {
     /* Adjust the font size of the heading and description */

@@ -10,7 +10,7 @@ const RoomCard = () => {
     <div className={styles.room_image}>
 <Image className={styles.image} src="/images/hotel-room.jpg" alt='room-pic' width={300} height={250}/>
     </div>
-    <p>this is a great  !</p>
+    <p>this is a great room !</p>
     <h5>20$ / night</h5>
     <div className={styles.rating}>
         <div>stars rating </div>
