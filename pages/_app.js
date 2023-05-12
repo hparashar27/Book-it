@@ -3,10 +3,11 @@ import { store } from "@/redux/store";
 
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <Providers>
+  return (<>
+   <Providers>
       <Component {...pageProps} />
     </Providers>
+  </>
   );
 }
 
