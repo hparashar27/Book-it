@@ -5,6 +5,8 @@
 
 import Layout from "@/components/Layout/Layout";
 import Home from "@/components/Home/Home"
+import { wrapper } from "@/redux/store";
+import { getRooms } from "@/redux/actions/roomActions";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -17,3 +19,7 @@ export default function index() {
     </>
   )
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async({req}) => {
+   await store.dispatch(getRooms(req));
+})

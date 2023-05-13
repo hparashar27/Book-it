@@ -1,13 +1,13 @@
-import { Providers } from '@/redux/provider'
-import { store } from "@/redux/store";
+import { Provider } from 'react-redux';
+import {wrapper} from '../redux/store';
 
 
-function MyApp({ Component, pageProps }) {
-  return (<>
-   <Providers>
-      <Component {...pageProps} />
-    </Providers>
-  </>
+function MyApp({ Component, ...rest }) {
+  const { store, ...props } = wrapper.useWrappedStore(rest);
+  return (
+    <Provider store={store}>
+      <Component {...props.pageProps} />
+    </Provider>
   );
 }
 

@@ -1,16 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
-import allRoomsReducer from "./slices/roomSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { HYDRATE ,createWrapper} from 'next-redux-wrapper';
+import thunkMiddleware from 'redux-thunk';
+import reducers from './reducers/reducers';
 
-const store = configureStore({
-  reducer: {
-    allRoomsReducer,
-  },
-  devTools: process.env.NODE_ENV !== "production",
+const reducer = (state, action) => {
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state,
+      ...action.payload,
+    };
+    return nextState;
+  } else {
+    return reducers(state, action);
+  }
+};
+
+export const store = configureStore({
+  reducer,
+  middleware: [thunkMiddleware],
 });
 
-const getState = store.getState;
-const dispatch = store.dispatch;
-export const RootState = getState();
-export const AppDispatch = dispatch;
+export const wrapper = createWrapper(() => store);
 
-export default store;

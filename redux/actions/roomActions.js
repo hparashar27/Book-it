@@ -1,30 +1,30 @@
-import absoluteUrl from "next-absolute-url";
-import axios from "axios"
+import axios from "axios";
+import absoluteUrl from "next-absolute-url"
+import { ALL_ROOMS_FAIL,ALL_ROOMS_SUCCESS,CLEAR_ERRORS } from "../constants/roomConstants";
 
-export const getAdminRooms = createAsyncThunk(
-    'allRooms/getAllRooms',
-    async (_, thunkAPI,req) => {
+export const getRooms = (req) => {
+    return async (dispatch) => {
       try {
-        const {origin} = absoluteUrl(req);
-        const { data } = await axios.get(`${origin}/api/rooms`);
-        return data.rooms;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data.message);
-      }
-    }
-  );
-  
-  export const getRooms = (req) => async(dispatch) =>{
-    try{
-const data = await axios.get(`/api/rooms`);
-
-dispatch({
-    type : ALL_ROOM_SUCCESS,
-    payload: data
-})
-    }catch(error){
+        const { origin } = absoluteUrl(req);
+        const { data } = await axios.get(`http://localhost:3000/api/rooms`);
         dispatch({
-            type: ADMIN_ROOMS_FAIL,
-            payload: error.response.data.message})
-    }
-  }
+          type: ALL_ROOMS_SUCCESS,
+          payload: data
+        });
+        return Promise.resolve(); // resolve the Promise after dispatch is complete
+      } catch (error) {
+        dispatch({
+          type: ALL_ROOMS_FAIL,
+          payload: error.response.data.message,
+        });
+        return Promise.reject(error); // reject the Promise if there's an error
+      }
+    };
+  };
+  
+
+export const clearErrors = () => async(dispatch) =>{
+    dispatch({
+        type : CLEAR_ERRORS,
+    })
+}
