@@ -22,8 +22,9 @@ border: 2px solid #c9c9c9;
 
 
 .card p{
+    display: block;
 font-family: poppins;
-font-size: 1.8rem;
+font-size: 1rem;
 color: black;
 margin-bottom: 10px;
 text-align: center;
@@ -39,10 +40,7 @@ border-radius: 20px;
 margin:10px
 }
 
-.image:hover{
-width: 280px;
-height: 190px;
-}
+
 
 .card .rating{
     display: flex;

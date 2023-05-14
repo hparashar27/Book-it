@@ -6,18 +6,18 @@ export const getRooms = (req) => {
     return async (dispatch) => {
       try {
         const { origin } = absoluteUrl(req);
-        const { data } = await axios.get(`http://localhost:3000/api/rooms`);
+        const { data } = await axios.get(`${origin}/api/rooms`);
         dispatch({
           type: ALL_ROOMS_SUCCESS,
           payload: data
         });
-        return Promise.resolve(); // resolve the Promise after dispatch is complete
+        // return Promise.resolve(); // resolve the Promise after dispatch is complete
       } catch (error) {
         dispatch({
           type: ALL_ROOMS_FAIL,
           payload: error.response.data.message,
         });
-        return Promise.reject(error); // reject the Promise if there's an error
+        // return Promise.reject(error); // reject the Promise if there's an error
       }
     };
   };

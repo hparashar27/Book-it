@@ -48,13 +48,13 @@
         "numOfReviews": 0,
         "images": [
             {
-                "public_id": "bookit/rooms/1_bzynlv",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590762/bookit/rooms/1_bzynlv.jpg",
+                "public_id": "bookit/rooms/b2_wezi8j",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684074150/bookit/rooms/b2_wezi8j.jpg",
                 "_id": "6456855665c72af3ba1c21a6"
             },
             {
-                "public_id": "bookit/rooms/2_s1u52n",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590761/bookit/rooms/2_s1u52n.jpg",
+                "public_id": "bookit/rooms/b5_pdxyso",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684074149/bookit/rooms/b5_pdxyso.jpg",
                 "_id": "6456855665c72af3ba1c21a7"
             }
         ],
@@ -80,13 +80,13 @@
         "numOfReviews": 0,
         "images": [
             {
-                "public_id": "bookit/rooms/5_jmydt6",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590762/bookit/rooms/5_jmydt6.jpg",
+                "public_id": "bookit/rooms/b3_j2piwn",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684074149/bookit/rooms/b3_j2piwn.jpg",
                 "_id": "6456855665c72af3ba1c21ad"
             },
             {
-                "public_id": "bookit/rooms/6_nwmr5f",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590764/bookit/rooms/6_nwmr5f.jpg",
+                "public_id": "bookit/rooms/b6_vj7jqe",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684074149/bookit/rooms/b6_vj7jqe.jpg",
                 "_id": "6456855665c72af3ba1c21ae"
             }
         ],
@@ -112,8 +112,8 @@
         "numOfReviews": 0,
         "images": [
             {
-                "public_id": "bookit/rooms/7_hshhzq",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590764/bookit/rooms/7_hshhzq.jpg",
+                "public_id": "bookit/rooms/b4_n6mpwx",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684074149/bookit/rooms/b4_n6mpwx.jpg",
                 "_id": "6456855665c72af3ba1c21b0"
             }
         ],
@@ -139,8 +139,8 @@
         "numOfReviews": 0,
         "images": [
             {
-                "public_id": "bookit/rooms/8_crn0xy",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590765/bookit/rooms/8_crn0xy.jpg",
+                "public_id": "bookit/rooms/b8_ayltjq",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684074149/bookit/rooms/b8_ayltjq.jpg",
                 "_id": "6456855665c72af3ba1c21b2"
             }
         ],
@@ -166,8 +166,8 @@
         "numOfReviews": 0,
         "images": [
             {
-                "public_id": "bookit/rooms/9_konrjf",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590849/bookit/rooms/9_konrjf.jpg",
+                "public_id": "bookit/rooms/b10_pxvpsu",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684075031/bookit/rooms/b10_pxvpsu.webp",
                 "_id": "6456855665c72af3ba1c21b4"
             }
         ],
@@ -220,8 +220,8 @@
         "numOfReviews": 0,
         "images": [
             {
-                "public_id": "bookit/rooms/4_sju0ql",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590765/bookit/rooms/4_sju0ql.jpg",
+                "public_id": "bookit/rooms/b9_bigbus",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684075032/bookit/rooms/b9_bigbus.jpg",
                 "_id": "6456855665c72af3ba1c21ab"
             }
         ],
@@ -247,8 +247,8 @@
         "numOfReviews": 0,
         "images": [
             {
-                "public_id": "bookit/rooms/3_quuli7.jpg",
-                "url": "https://res.cloudinary.com/bookit/image/upload/v1618590762/bookit/rooms/3_quuli7.jpg",
+                "public_id": "bookit/rooms/b11_xtvnz2",
+                "url": "https://res.cloudinary.com/bookitapp/image/upload/v1684075032/bookit/rooms/b11_xtvnz2.jpg",
                 "_id": "6456855665c72af3ba1c21a9"
             }
         ],
