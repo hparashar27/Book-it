@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(()=>{
     toast.success(" this is success message !")
   },[])
-    console.log(rooms);
+    // console.log(rooms);
   return (
     <>
     <div className={styles.head}>
