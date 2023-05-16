@@ -2,15 +2,18 @@ import React, { useEffect } from 'react'
 import styles from "./Home.module.css"
 import {BiLeftArrowAlt} from "react-icons/bi"
 import RoomCard from '../RoomCard/RoomCard'
-import { useSelector } from 'react-redux'
+import { useSelector ,useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
+import { clearErrors } from '@/redux/actions/roomActions'
 
 const Home = () => {
-  const {rooms} = useSelector(state => state.allrooms);
+  const dispatch = useDispatch();
+  const {rooms,error} = useSelector(state => state.allrooms);
   useEffect(()=>{
-    toast.success(" this is success message !")
+    toast.error(error);
+    dispatch(clearErrors());
   },[])
-    // console.log(rooms);
+    
   return (
     <>
     <div className={styles.head}>

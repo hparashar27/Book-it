@@ -28,6 +28,10 @@
  text-align: center;
 }
 
+.room_carousel{
+    width: 100wv;
+}
+
 .room_img{
 object-fit: cover;
 height: 50vh;
@@ -39,7 +43,7 @@ border-radius: 20px;
 .disc_box{
     display: grid;
     grid-template-columns: 80% 20%;
-    margin:5% 10% 4% 10%;
+    margin:5% 5% 4% 10%;
 }
 
 .description{
@@ -105,18 +109,21 @@ justify-content: space-evenly;
 
 .rating{
 border-bottom: 2px solid #c5c5c5;
-margin-left: 9%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center
 }
 
 .rating h4{
-    margin: 2%;
+    /* margin: 2%; */
     font-size: 1.7rem;
 }
 
 .rating_card{
-width: 100vw;
-margin: 3% 0% 3% 0%;
-/* margin: 3% 9% 3% 9%; */
+width: 80vw;
+margin-bottom: 2%;
+
 }
 
 @media only screen and (max-width: 800px) {
