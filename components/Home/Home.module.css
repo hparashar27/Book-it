@@ -23,11 +23,33 @@
     align-items: center;
 }
 
+.pagination_item{
+color: #e61e4d;
+}
+
+.pagination_link{
+    color: #e61e4d;
+    font-size: 1.2rem;
+    padding: 10px;    
+    border: #ccc solid 2px;
+    
+}
+.pagination_item.active .pagination_link {
+    color: #e61e4d;
+    background-color: #e61e4d;
+}
 .rooms_heading{
 font-size: 3rem;
 color: #000;
 font-family: poppins;
 font-weight: 800;
+}
+
+.pagination{
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin: 4%;
 }
 
 .back_to{

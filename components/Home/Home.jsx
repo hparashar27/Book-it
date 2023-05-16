@@ -5,15 +5,29 @@ import RoomCard from '../RoomCard/RoomCard'
 import { useSelector ,useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { clearErrors } from '@/redux/actions/roomActions'
+import {useRouter} from 'next/router'
+import Pagination from "react-js-pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const {rooms,error} = useSelector(state => state.allrooms);
+  const {rooms,error,resPerPage,roomsCount, filteredRoomsCount} = useSelector(state => state.allrooms);
+  console.log(rooms)
+  console.log(resPerPage);
+  console.log(roomsCount);
+  console.log(filteredRoomsCount)
   useEffect(()=>{
     toast.error(error);
     dispatch(clearErrors());
   },[])
-    
+
+  const router = useRouter();
+  let {page = 1} = router.query
+  page = Number(page);
+  
+  const handlePagination =(pageNumber)=>{
+window.location.href = `?page=${pageNumber}`
+  }
+
   return (
     <>
     <div className={styles.head}>
@@ -26,6 +40,20 @@ const Home = () => {
     }
     )}
     </div>
+    {resPerPage<roomsCount && <div className={styles.pagination}>
+      <Pagination
+     activePage={page}
+     itemsCountPerPage={resPerPage}
+     totalItemsCount={roomsCount}
+     onChange={handlePagination}
+     nextPageText={"Next"}
+     firstPageText={"First"}
+     lastPageText={"Last"}
+     prevPageText={"Prev"}
+     itemClass={styles.pagination_item}
+     linkClass={styles.pagination_link}
+    />
+      </div>}
   </>
   )
 }
