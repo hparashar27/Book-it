@@ -26,15 +26,15 @@ export const getRoomDetail = (req,id) => {
  return async(dispatch)=>{
     try{
   const {origin} = absoluteUrl(req);
-  const {data}= await axios.get(`${origin}/api/rooms/${id}`);
+  const {data} = await axios.get(`${origin}/api/rooms/${id}`);
   dispatch({
     type : ROOM_DETAIL_SUCCESS,
-    payload : data.room
+    payload : data
   })
     }catch(error){
     dispatch({
-      type :ROOM_DETAIL_FAIL,
-    payload : error.response.data.message,
+      type:ROOM_DETAIL_FAIL,
+    payload:error.response.data.message,
     })
   }
 }

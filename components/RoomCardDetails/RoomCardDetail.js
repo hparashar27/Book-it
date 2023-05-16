@@ -6,38 +6,37 @@ import {BsPeopleFill} from "react-icons/bs"
 import {TbToolsKitchen2} from "react-icons/tb"
 import {Card } from '@material-ui/core';
 
-const RoomCardDetail = () => {
-  
+const RoomCardDetail = ({roomData}) => {
   return (
     <>
-    <div className={styles.room_detail_page}>
-     <span className={styles.room_heading}>Spacious Suite in a quiet Boston neighborhood</span>
-     <p> "224 Cherry St, Buffalo, NY, 14202"</p>
+    {roomData && <div className={styles.room_detail_page}>
+     <span className={styles.room_heading}>{roomData.name}</span>
+     <p>{roomData.address}</p>
      <div className={styles.rev_rat}>
         <div className={styles.room_rating}> ⭐⭐⭐⭐⭐</div>
-        <p> (10 reviews)</p>
+        <p>{roomData.numOfReviews} reviews</p>
      </div>
-     <Image src="/images/hotel-room.jpg" width={100} height={100} className={styles.room_img}></Image>
+     <Image alt='hotel-room' src={roomData.images[0].url} width={100} height={100} className={styles.room_img}></Image>
      <section className={styles.disc_box}>
-        <div className={styles.description}><h4>Description</h4> <br/> Our largest room with a queen bed and foldable sofa. Comfortably fits 2-3 adults, four adults maximum. Decorated with Irish-themed colors and arts. It has a private bathroom with a shower, equipped with smart TV, mini-fridge, desk, chairs. Enjoy City views at the sitting area by the window. Located on the 3rd floor with no elevator.</div>
+        <div className={styles.description}><h4>Description</h4> <br/>{roomData.description}</div>
         <Card className={styles.pay_card}>
-            <h5> $20/night </h5>
+            <h5> {roomData.pricePerNight}/night </h5>
             <button className={styles.pay_button}>pay now</button>
         </Card>
      </section>
      <section className={styles.features}>
     <h4>Features </h4>
     <div className={styles.feature_item_box}>
-       <p><FaBed color='#e61e4d'/>Beds</p>
-       <p><FaBath color='#e61e4d'/>Bath</p>
-       <p><BsPeopleFill color='#e61e4d'/>Guests</p>
-       <p><TbToolsKitchen2 color='#e61e4d'/> Kitchen</p>
+       <p><FaBed color='#e61e4d'/>{roomData.numOfBeds} Bed</p>
+       <p><FaBath color='#e61e4d'/>{roomData.numOfBath} baths</p>
+       <p><BsPeopleFill color='#e61e4d'/>{roomData.guestCapacity} guest</p>
+       <p><TbToolsKitchen2 color='#e61e4d'/> {roomData.numOfKitchen}Kitchen</p>
      </div>
     </section>
     <section className={styles.rating}>
       <h4>Ratings</h4>
       <Card className={styles.rating_card}>
-       <div>⭐⭐⭐⭐⭐</div>
+       <div>{roomData.reviews.map((rating,index)=>{return <div key={index}>⭐</div>})}</div>
        <p>By Harsh</p>
        <h6>This is a superb app ! </h6>
       </Card>
@@ -47,8 +46,7 @@ const RoomCardDetail = () => {
        <h6>This is a superb app ! </h6>
       </Card>
     </section>
-    </div>
-
+    </div>}
     </>
   )
 }

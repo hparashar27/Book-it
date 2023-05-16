@@ -7,10 +7,11 @@ import { useSelector } from 'react-redux'
 
 export default function roomDetail(){
   const data = useSelector(state => state.roomDetails)
-  console.log(data);
+  const roomData = data.room.getsingleRoom
+  console.log(roomData);
   return (
     <Layout>
-        <RoomCardDetail />
+        <RoomCardDetail roomData={roomData} />
     </Layout>
   )
 }

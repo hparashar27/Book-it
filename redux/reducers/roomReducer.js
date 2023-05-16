@@ -31,7 +31,7 @@ export const roomDetailReducer = (state={room:{}},action) =>{
   switch(action.type){
     case ROOM_DETAIL_SUCCESS :
       return{
-        room : action.payload ?? {}, // Use the nullish coalescing operator to provide a default value of {} for action.payload
+        room : action.payload ?? {}
       }
     case ROOM_DETAIL_FAIL : 
       return{
