@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { clearErrors } from '@/redux/actions/roomActions'
 import {useRouter} from 'next/router'
 import Pagination from "react-js-pagination";
+import Link from 'next/link'
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,18 +22,24 @@ const Home = () => {
   },[])
 
   const router = useRouter();
-  let {page = 1} = router.query
+  let {location,page = 1} = router.query
   page = Number(page);
   
   const handlePagination =(pageNumber)=>{
 window.location.href = `?page=${pageNumber}`
   }
 
+  let count = roomsCount 
+  if(location){
+    count = filteredRoomsCount
+  }
+
+
   return (
     <>
     <div className={styles.head}>
-    <span className={styles.rooms_heading}>All rooms</span>
-    <span className={styles.back_to}><BiLeftArrowAlt/>Back to Search </span>
+    <span className={styles.rooms_heading}>{location ? `Room in ${location}`:`All Rooms`}</span>
+    <Link className={styles.back_to} href="/search"><BiLeftArrowAlt/>Back to Search </Link>
     </div>
     <div className={styles.card_container}>
     {rooms && rooms.length === 0 ? <div> no rooms </div> : rooms.map((room) => {
@@ -40,7 +47,7 @@ window.location.href = `?page=${pageNumber}`
     }
     )}
     </div>
-    {resPerPage<roomsCount && <div className={styles.pagination}>
+    {resPerPage<count && <div className={styles.pagination}>
       <Pagination
      activePage={page}
      itemsCountPerPage={resPerPage}
