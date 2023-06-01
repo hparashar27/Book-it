@@ -3,7 +3,7 @@ import dbConnect from "@/config/dbConnect";
 import OnError from "@/middlewares/error"
 
 export default function roomHandler(req,res){
-if(req.method === "PUT"){
+if(req.method === "POST"){
    registerNewUser(req,res,OnError);
 }
 else{

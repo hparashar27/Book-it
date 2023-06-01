@@ -13,12 +13,13 @@ const registerNewUser = catchAsyncError(async(req,res)=>{
         password,
         avatar:{
             public_id:"PUBLIC_ID",
-            url:"url"
+            url:"URL"
         }
     })
-
     res.status(200).json({
         success : true,
         message :" A register is registered successfully"
     })
 })
+
+export {registerNewUser} 
