@@ -4,10 +4,10 @@ import OnError from "@/middlewares/error"
 
 export default function roomHandler(req,res){
 if(req.method === "POST"){
-   registerNewUser(req,res,OnError);
+   registerNewUser(req,res);
 }
 else{
-    res.status(405).end(); // Method Not Allowed
+    res.status(404).end(); // Method Not Allowed
 }
 }
 

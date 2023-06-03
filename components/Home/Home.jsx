@@ -42,7 +42,7 @@ window.location.href = `?page=${pageNumber}`
     <Link className={styles.back_to} href="/search"><BiLeftArrowAlt/>Back to Search </Link>
     </div>
     <div className={styles.card_container}>
-    {rooms && rooms.length === 0 ? <div> no rooms </div> : rooms.map((room) => {
+    {rooms && rooms.length === 0 ? <div> no rooms </div>: rooms.map((room) => {
         return <RoomCard room={room} key={room._id}/>
     }
     )}
