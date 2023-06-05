@@ -12,9 +12,11 @@ const Header = () => {
             src="/images/bookit_logo.png" alt='bookit_logo' height={55} width={120}
             /></Link> 
         <div className={styles.spacer}></div>
-        
-          <button className={styles.button_class}>Login</button>
-      
+        <Link href="/login">
+          <button className={styles.button_class}>
+              Login
+            </button>
+            </Link>
     </div>
   )
 }

@@ -14,21 +14,18 @@ async authorize(credentials){
     const {email,password} = credentials;
 
     // check that if user exist or not 
-
     if(!email || !password){
         throw new Error("please entered a valid email and password")
     }
 
        
     // find user in the database 
-
     const user = await User.findOne({email}).select('+password');
     if(!user){
         throw new Error("Invalid email and password !");
     }
 
     // check is the entered password is correct or not ?
-
     const isMatchedPassword  = await user.comparePassword(password);
 
     if(!isMatchedPassword){
