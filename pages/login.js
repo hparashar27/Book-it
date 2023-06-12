@@ -4,9 +4,7 @@ import Login from "@/components/Login/Login";
 export default function login(){
     return(
         <>
-    <Layout title="Login to the bookit !">
         <Login/>
-    </Layout>
     </>
     )
 }

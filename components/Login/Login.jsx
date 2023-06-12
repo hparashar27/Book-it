@@ -1,60 +1,66 @@
 import React from 'react'
 import { useState } from 'react'
-import {signIn} from "next-auth"
+import {toast} from "react-toastify"
+import {signIn} from "next-auth/react"
 import styles from "./login.module.css"
+import {FcGoogle}  from "react-icons/fc"
+import {BsGithub} from "react-icons/bs"
+import { Button } from '@material-ui/core'
 
 const Login = () => {
-  const result = signIn({
-    email,
-    password
-  })
-  cons
-  return (
+const [email,setEmail] = useState("");
+const [password,setPassword] = useState("");
+
+const submitHandler = async(e)=>{
+e.preventDefault();
+const result = await signIn("credentials",{
+redirect:false,
+email,
+password
+})
+
+if(result.error){
+  toast.error(result.error);
+}else{
+ window.location.href = "/"
+} 
+}
+  return (<>
       <div className={styles.search_form_container}>
             <form className={styles.form} onSubmit={submitHandler}>
-            <h3>Search your room !</h3>
+            <h3>Login to the Bookit !</h3>
             <div className={styles.form_item}>
-                <label>Location</label>
+                <label>Email</label>
                 <input 
-                placeholder=' Enter location search for'
+                placeholder=' Enter your email here '
                 type='text'
-                value={location}
-                onChange={(e)=>setLocation(e.target.value)}
-                ></input>
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
+                > 
+                </input>
                 </div>
                 <div className={styles.form_item}>
-                <label>Guests</label>
-                <select>
-                {[1,2,3,4,5,6].map((num)=>{
-                    return(
-                        <option 
-                        key={num}
-                        value={num}
-                        onChange={(e)=>setGuests(e.target.value)}
-                         >
-                            {num}
-                        </option>
-                    )
-                })}
-                </select>
+                <label>Password</label>
+                <input 
+                placeholder=' Enter your password '
+                type='text'
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
+                > 
+                </input>
                 </div>
                 <div className={styles.form_item}>
-                <label>Room type</label>
-                <select>
-                {["King","Twin","Single",].map((roomType)=>{
-                    return(
-                        <option key={roomType} value={roomType}  onChange={(e)=>setRoomtype(e.target.value)}>
-                            {roomType}
-                        </option>
-                    )
-                })}
-                </select>
-                </div>
-                <div className={styles.form_item}>
-                <button>Submit</button>
+                <button className={styles.submit}>Submit</button>
+ <div className={styles.loginWithgoogit}>
+<button><FcGoogle/></button>
+<button><BsGithub/></button>
+</div>
                 </div>
             </form>
+    
     </div>
+
+    </>
   )
 }
 
