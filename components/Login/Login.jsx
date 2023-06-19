@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import {toast} from "react-toastify"
-import {signIn} from "next-auth/react"
+import {useSession,signIn} from "next-auth/react"
 import styles from "./login.module.css"
 import {FcGoogle}  from "react-icons/fc"
 import {BsGithub} from "react-icons/bs"
@@ -10,6 +10,10 @@ import { Button } from '@material-ui/core'
 const Login = () => {
 const [email,setEmail] = useState("");
 const [password,setPassword] = useState("");
+
+const {data} = useSession();
+console.log(data)
+
 
 const submitHandler = async(e)=>{
 e.preventDefault();
@@ -52,7 +56,7 @@ if(result.error){
                 <div className={styles.form_item}>
                 <button className={styles.submit}>Submit</button>
  <div className={styles.loginWithgoogit}>
-<button><FcGoogle/></button>
+<button onClick={()=>signIn("google")}><FcGoogle/></button>
 <button><BsGithub/></button>
 </div>
                 </div>

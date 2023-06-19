@@ -2,12 +2,18 @@ import NextAuth from "next-auth"
 import User from "@/modals/userModal"
 import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "@/config/dbConnect"
+import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
 export default NextAuth({
   session: {
     jwt: true
   },
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_SECRET_ID
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
