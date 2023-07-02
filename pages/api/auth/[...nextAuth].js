@@ -15,42 +15,47 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_SECRET_ID
     }),
     CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "email", type: "text", placeholder: "enter your email" },
-        password: { label: "Password", type: "password" ,placeholder: "enter your email" }
-      },
-      async authorize(credentials) {
-        dbConnect();
+      type : "credentials",
+      credentials : {},
+      async authorize(credentials,req) {
         const { email, password } = credentials;
-
-        // check if user exists or not 
+        dbConnect();
+        // Check if email and password is entered
         if (!email || !password) {
-          throw new Error("Please enter a valid email and password")
+            throw new Error('Please enter email or password');
         }
-        // find user in the database 
-        const user = await User.findOne({ email }).select('+password');
-        if (!user) {
-          throw new Error("Invalid email and password!")
-        }
-        // check if the entered password is correct or not 
-        const isMatchedPassword = await user.comparePassword(password);
 
-        if (!isMatchedPassword) {
-          throw new Error("Entered password is not correct!")
+        // Find user in the database
+        const user = await User.findOne({ email })
+        if (!user) {
+            throw new Error('Invalid Email or Password')
         }
-        return Promise.resolve(user);
+
+        // Check if password is correct or not
+        const isPasswordMatched = await user.comparePassword(password);
+
+        if (!isPasswordMatched) {
+            throw new Error('Invalid Email or Password')
+        }
+
+        return {
+          name : user.name,
+          email : user.email,
+          id: user._id,
+        };
       }
-    })
+    }),
   ],
   callbacks: {
-    jwt: async (token, user) => {
-      user && (token.user = user);
-      return Promise.resolve(token)
+    async jwt(token, user) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
     },
-    session: async (session, user) => {
-      session.user = user.user;
-      return Promise.resolve(session)
-    }
-  }
-})
+    async session(session, user) {
+      session.user = user?.user;
+      return session;
+  },
+}
+});
